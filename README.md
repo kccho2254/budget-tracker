@@ -8,6 +8,7 @@ Javascript
 
 # Link
 https://github.com/kccho2254/budget-tracker
+https://kccho2254.github.io/budget-tracker/
 
 ![screenshot](./public/icons/budgetpreview.png)
 
