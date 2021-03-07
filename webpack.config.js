@@ -22,15 +22,6 @@ const config = {
       background_color: "#ffff",
       start_url: "/",
       display: "standalone",
-      icons: [
-        {
-          src: path.resolve(
-            __dirname,
-            "public/icons/icon-512x512.png",
-            ),
-          size: [72, 96, 128, 144, 152, 192, 384, 512]
-        }
-      ]
     })
   ]
 };
