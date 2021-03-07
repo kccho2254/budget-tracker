@@ -14,11 +14,12 @@ const FILES_TO_CACHE = [
     // '/dist/icon-512x512.png',
   ];
   
-  const STATIC_CACHE = "static-cache-v1";
-  const RUNTIME_CACHE = "runtime-cache";
+  const STATIC_CACHE = "static-cache-v2";
+  const RUNTIME_CACHE = "data-cache-v1";
   
   self.addEventListener("install", event => {
 
+    console.log("install");
     event.waitUntil(
       caches
         .open(STATIC_CACHE)
@@ -32,6 +33,8 @@ const FILES_TO_CACHE = [
   // The activate handler takes care of cleaning up old caches.
   // this code does nothing right now
   self.addEventListener("activate", event => {
+
+    console.log("activate");
 
     const currentCaches = [STATIC_CACHE, RUNTIME_CACHE];
     event.waitUntil(
@@ -57,6 +60,7 @@ const FILES_TO_CACHE = [
   
   self.addEventListener("fetch", event => {
     // non GET requests are not cached and requests to other origins are not cached
+    console.log("fetch")
     if (
       event.request.method !== "GET" ||
       !event.request.url.startsWith(self.location.origin)
@@ -66,7 +70,7 @@ const FILES_TO_CACHE = [
     }
   
     // handle runtime GET requests for data from /api routes
-    if (event.request.url.includes("/api/images")) {
+    if (event.request.url.includes("/")) {
       // make network request and fallback to cache if network request fails (offline)
       event.respondWith(
         caches.open(RUNTIME_CACHE).then(cache => {
